@@ -76,11 +76,15 @@ export class Observer {
        * getter/setters. This method should only be called when
        * value type is Object.
        */
+      performance.mark('walkStart');
       const keys = Object.keys(value)
       for (let i = 0; i < keys.length; i++) {
         const key = keys[i]
         defineReactive(value, key, NO_INITIAL_VALUE, undefined, shallow, mock)
       }
+      console.log('keys.length: ', keys.length);
+      console.log(performance.measure('walkStart'));
+      console.log(performance.measure('walkStart').duration);
     }
   }
 
